@@ -18,7 +18,7 @@ To request a new release please raise an issue.
 
 * Ensure the code is passing on the CI server [![Build Status](https://secure.travis-ci.org/fog/fog.png?branch=master)](http://travis-ci.org/fog/fog)
 * Ensure the code is passing for live tests (Requires Credentials for all
-services required)
+services)
 * Ensure working on **master**
 * Update the version number (`lib/fog/version.rb`)
 * Run `rake changelog` to update `changelog.txt`
