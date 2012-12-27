@@ -10,7 +10,7 @@ fog uses semantic versioning (http://semver.org/)
 ## When we release
 
 Releases occur monthly and are manually handled by fog's Benevolent
-Dicator Wes (@geemus).
+Dictator Wes (@geemus).
 
 To request a new release please raise an issue.
 
