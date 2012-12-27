@@ -104,7 +104,6 @@ task :release => :build do
   Rake::Task[:git_mark_release].invoke
   Rake::Task[:git_push_release].invoke
   Rake::Task[:gem_push].invoke
-  Rake::Task[:docs].invoke
 end
 
 task :git_mark_release do
