@@ -101,12 +101,24 @@ task :release => :build do
     exit!
   end
   sh "gem install pkg/#{name}-#{version}.gem"
+  Rake::Task[:git_mark_release].invoke
+  Rake::Task[:git_push_release].invoke
+  Rake::Task[:gem_push].invoke
+  Rake::Task[:docs].invoke
+end
+
+task :git_mark_release do
   sh "git commit --allow-empty -a -m 'Release #{version}'"
   sh "git tag v#{version}"
+end
+
+task :git_push_release do
   sh "git push origin master"
   sh "git push origin v#{version}"
+end
+
+task :gem_push do
   sh "gem push pkg/#{name}-#{version}.gem"
-  Rake::Task[:docs].invoke
 end
 
 task :build => :gemspec do

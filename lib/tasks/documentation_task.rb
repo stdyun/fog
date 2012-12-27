@@ -5,11 +5,23 @@ module Fog
   module Rake
     class DocumentationTask < ::Rake::TaskLib
       def initialize
-        task :docs do
+        task :docs => [:prepare_docs, :upload_docs]
+
+        desc "Generates documentation"
+        task :prepare_docs do
           Rake::Task[:supported_services_docs].invoke
+          Rake::Task[:build_fog_io].invoke
+        end
+
+        desc "Uploads documentation to S3"
+        task :upload_docs do
           Rake::Task[:upload_fog_io].invoke
           Rake::Task[:upload_yardoc].invoke
+          Rake::Task[:upload_redirector_index].invoke
+        end
 
+
+        task :upload_redirector_index do
           # connect to storage provider
           Fog.credential = :geemus
           storage = Fog::Storage.new(:provider => 'AWS')
